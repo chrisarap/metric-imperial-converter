@@ -10,7 +10,7 @@ function ConvertHandler() {
     kg: 'kilograms'
   }
 
-  this.getNum = input => units.hasOwnProperty(input.toLowerCase()) ? 1 : Number(input.match(/\d*[./]?\d*/g).join(''));
+  this.getNum = input => units.hasOwnProperty(input.toLowerCase()) ? 1 : eval(input.match(/\d*[./]?\d*/g).join(''));
 
   this.getUnit = input => (input.toLowerCase().match(/[a-zA-Z]+/g).join('') == 'l') ? 'L' : input.toLowerCase().match(/[a-zA-Z]/g).join('');
 
