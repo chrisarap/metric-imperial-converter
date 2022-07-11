@@ -1,8 +1,8 @@
 function ConvertHandler() {
 
-  this.getNum = input => Number(input.match(/\d+.\d+/).join(''));
+  this.getNum = input => Number(input.match(/\d+[.\d]*/).join(''));
 
-  this.getUnit = input => (input.match(/[a-zA-Z]/g).join('') == 'l') ? 'L' : input.match(/[a-zA-Z]/g).join('');
+  this.getUnit = input => (input.toLowerCase().match(/[a-zA-Z]+/g).join('') == 'l') ? 'L' : input.toLowerCase().match(/[a-zA-Z]/g).join('');
 
   this.getReturnUnit = initUnit => {
     if (initUnit == 'mi') return 'km';
