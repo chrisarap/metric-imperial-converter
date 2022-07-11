@@ -1,6 +1,16 @@
 function ConvertHandler() {
 
-  this.getNum = input => Number(input.match(/\d+[.\d]*/).join(''));
+  const units = {
+    mi: 'miles',
+    km: 'kilometers',
+    gal: 'gallons',
+    l: 'liters',
+    L: 'liters',
+    lbs: 'pounds',
+    kg: 'kilograms'
+  }
+
+  this.getNum = input => units.hasOwnProperty(input.toLowerCase()) ? 1 : Number(input.match(/\d*[./]?\d*/g).join(''));
 
   this.getUnit = input => (input.toLowerCase().match(/[a-zA-Z]+/g).join('') == 'l') ? 'L' : input.toLowerCase().match(/[a-zA-Z]/g).join('');
 
@@ -37,16 +47,6 @@ function ConvertHandler() {
   };
 
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
-    const units = {
-      mi: 'miles',
-      km: 'kilometers',
-      gal: 'gallons',
-      l: 'liters',
-      L: 'liters',
-      lbs: 'pounds',
-      kg: 'kilograms'
-    }
-
     return `${initNum} ${units[initUnit]} converts to ${returnNum} ${units[returnUnit]}`;
   };
 }
