@@ -15,13 +15,13 @@ function ConvertHandler() {
     let index = input.split('').findIndex((x, index) => rgx.test(x));
     let number = input.slice(0, index);
 
-    console.log(number);
     if (/\s/.test(number)) {
       return 'invalid number';
     } else {
       try {
         if(number.length == 0) return 1;
         if((/\d+\/\d+[\.]?\d+\/\d+/).test(number)) return 'invalid number';
+        if(number.split('/').length > 2) return 'invalid number';
         return eval(number);
       } catch (e) {
         return 'invalid number';

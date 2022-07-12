@@ -5,7 +5,8 @@
 	"main": "server.js",
 	"scripts": {
 		"start": "node server.js",
-		"test": "mocha ./tests/ --ui tdd"
+		"test": "mocha ./tests/ --ui tdd",
+		"dev": "nodemon server.js"
 	},
 	"dependencies": {
 		"body-parser": "^1.19.0",
@@ -25,5 +26,8 @@
 		"freeCodeCamp",
 		"express"
 	],
-	"license": "MIT"
+	"license": "MIT",
+	"devDependencies": {
+		"nodemon": "^2.0.19"
+	}
 }
