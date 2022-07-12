@@ -15,10 +15,12 @@ function ConvertHandler() {
     let index = input.split('').findIndex((x, index) => rgx.test(x));
     let number = input.slice(0, index);
 
+    console.log(number);
     if (/\s/.test(number)) {
       return 'invalid number';
     } else {
       try {
+        if(number.length == 0) return 1;
         return eval(number);
       } catch (e) {
         return 'invalid number';
