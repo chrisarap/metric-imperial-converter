@@ -11,7 +11,7 @@ module.exports = function (app) {
     const input = req.query.input;
 
     const initNum = convertHandler.getNum(input);
-    const initUnit = convertHandler.getUnit(input);
+    let initUnit = convertHandler.getUnit(input);
 
     const returnNum = convertHandler.convert(initNum, initUnit);
     const returnUnit = convertHandler.getReturnUnit(initUnit);
@@ -26,6 +26,9 @@ module.exports = function (app) {
     } else if (initUnit == 'invalid unit') {
       res.send('invalid unit');
     } else {
+      if (initUnit == 'l') {
+        initUnit = 'L';
+      }
       res.json({
         initNum: initNum,
         initUnit: initUnit,

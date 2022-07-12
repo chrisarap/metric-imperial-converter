@@ -19,7 +19,7 @@ function ConvertHandler() {
       return 'invalid number';
     } else {
       try {
-        return Math.round(eval(number) * 100000) / 100000;
+        return eval(number);
       } catch (e) {
         return 'invalid number';
       }
