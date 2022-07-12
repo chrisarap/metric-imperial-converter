@@ -11,22 +11,32 @@ function ConvertHandler() {
   }
 
   this.getNum = input => {
-    if ((/\s/).test(input)) {
+    let rgx = /[a-zA-Z]/;
+    let index = input.split('').findIndex((x, index) => rgx.test(x));
+    let number = input.slice(0, index);
+
+    if (/\s/.test(number)) {
       return 'invalid number';
-    } else if(units.hasOwnProperty(input.toLowerCase())) {
-      return 1;
     } else {
-      return eval(input.match(/\d*[./]?\d*/g).join(''));
+      try {
+        return Math.round(eval(number) * 100000) / 100000;
+      } catch (e) {
+        return 'invalid number';
+      }
     }
   };
 
   this.getUnit = input =>{
-    if ((/\s/).test(input)) {
-      return 'invalid unit';
-    }else if(input.toLowerCase().match(/[a-zA-Z]+/g).join('') == 'l') {
-      return 'L';
+    let rgx = /[a-zA-Z]/;
+    let index = input.split('').findIndex((x, index) => rgx.test(x));
+    let unit = input.slice(index, input.length);
+
+
+    if(!units.hasOwnProperty(unit)) {
+      return "invalid unit"
     } else {
-      return input.toLowerCase().match(/[a-zA-Z]/g).join('');
+      return unit;
+      console.log(unit, units.hasOwnProperty(unit))
     }
    };
 

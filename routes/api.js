@@ -17,6 +17,8 @@ module.exports = function (app) {
     const returnUnit = convertHandler.getReturnUnit(initUnit);
     const string = convertHandler.getString(initNum, initUnit, returnNum, returnUnit);
 
+    console.log(initNum, initUnit);
+
     if (initNum == 'invalid number' && initUnit == 'invalid unit') {
       res.send('invalid number and unit');
     } else if (initNum == 'invalid number') {
