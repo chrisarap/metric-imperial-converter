@@ -21,7 +21,7 @@ function ConvertHandler() {
     } else {
       try {
         if(number.length == 0) return 1;
-        if((/\d+\/\d+\/\d+/).test(number)) return 'invalid number';
+        if((/\d+\/\d+[\.]?\d+\/\d+/).test(number)) return 'invalid number';
         return eval(number);
       } catch (e) {
         return 'invalid number';
@@ -38,7 +38,6 @@ function ConvertHandler() {
       return "invalid unit"
     } else {
       return unit;
-      console.log(unit, units.hasOwnProperty(unit))
     }
    };
 
