@@ -21,6 +21,7 @@ function ConvertHandler() {
     } else {
       try {
         if(number.length == 0) return 1;
+        if((/\d+\/\d+\/\d+/).test(number)) return 'invalid number';
         return eval(number);
       } catch (e) {
         return 'invalid number';
@@ -31,8 +32,7 @@ function ConvertHandler() {
   this.getUnit = input =>{
     let rgx = /[a-zA-Z]/;
     let index = input.split('').findIndex((x, index) => rgx.test(x));
-    let unit = input.toLowerCase().slice(index, input.length);
-
+    let unit = (input.slice(index, input.length) == 'L' || input.slice(index, input.length) == 'l') ? 'L' : input.toLowerCase().slice(index, input.length);
 
     if(!units.hasOwnProperty(unit)) {
       return "invalid unit"
@@ -64,10 +64,10 @@ function ConvertHandler() {
     const lbsToKg = 0.453592;
     const miToKm = 1.60934;
 
-    if (initUnit == 'gal')  return Math.round(initNum * galToL * 100000) / 100000;
-    if (initUnit == 'l' || initUnit == 'L')    return Math.round(initNum / galToL * 100000) / 100000;
+    if (initUnit == 'gal') return Math.round(initNum * galToL * 100000) / 100000;
+    if (initUnit == 'l' || initUnit == 'L') return Math.round(initNum / galToL * 100000) / 100000;
 
-    if (initUnit == 'lbs')  return Math.round(initNum * lbsToKg * 100000) / 100000;
+    if (initUnit == 'lbs') return Math.round(initNum * lbsToKg * 100000) / 100000;
     if (initUnit == 'kg')  return Math.round(initNum / lbsToKg * 100000) / 100000;
 
     if (initUnit == 'mi')  return Math.round(initNum * miToKm * 100000) / 100000;
