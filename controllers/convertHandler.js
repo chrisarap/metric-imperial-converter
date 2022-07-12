@@ -29,7 +29,7 @@ function ConvertHandler() {
   this.getUnit = input =>{
     let rgx = /[a-zA-Z]/;
     let index = input.split('').findIndex((x, index) => rgx.test(x));
-    let unit = input.slice(index, input.length);
+    let unit = input.toLowerCase().slice(index, input.length);
 
 
     if(!units.hasOwnProperty(unit)) {
