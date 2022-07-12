@@ -10,9 +10,25 @@ function ConvertHandler() {
     kg: 'kilograms'
   }
 
-  this.getNum = input => units.hasOwnProperty(input.toLowerCase()) ? 1 : eval(input.match(/\d*[./]?\d*/g).join(''));
+  this.getNum = input => {
+    if ((/\s/).test(input)) {
+      return 'invalid number';
+    } else if(units.hasOwnProperty(input.toLowerCase())) {
+      return 1;
+    } else {
+      return eval(input.match(/\d*[./]?\d*/g).join(''));
+    }
+  };
 
-  this.getUnit = input => (input.toLowerCase().match(/[a-zA-Z]+/g).join('') == 'l') ? 'L' : input.toLowerCase().match(/[a-zA-Z]/g).join('');
+  this.getUnit = input =>{
+    if ((/\s/).test(input)) {
+      return 'invalid unit';
+    }else if(input.toLowerCase().match(/[a-zA-Z]+/g).join('') == 'l') {
+      return 'L';
+    } else {
+      return input.toLowerCase().match(/[a-zA-Z]/g).join('');
+    }
+   };
 
   this.getReturnUnit = initUnit => {
     if (initUnit == 'mi') return 'km';
